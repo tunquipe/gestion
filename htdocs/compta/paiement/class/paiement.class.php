@@ -354,7 +354,8 @@ class Paiement extends CommonObject
 								Facture::TYPE_REPLACEMENT,
 								Facture::TYPE_CREDIT_NOTE,
 								Facture::TYPE_DEPOSIT,
-								Facture::TYPE_SITUATION
+								Facture::TYPE_SITUATION,
+                                Facture::TYPE_BOLETA //boleta
 							);
 
                             if (!in_array($invoice->type, $affected_types)) dol_syslog("Invoice ".$facid." is not a standard, nor replacement invoice, nor credit note, nor deposit invoice, nor situation invoice. We do nothing more.");

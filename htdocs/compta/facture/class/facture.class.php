@@ -231,7 +231,12 @@ class Facture extends CommonInvoice
      */
     const TYPE_PROFORMA = 4;
 
-	/**
+    /**
+     * Boleta
+     */
+    const TYPE_BOLETA = 10;
+
+    /**
 	 * Situation invoice
 	 */
 	const TYPE_SITUATION = 5;

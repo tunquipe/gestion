@@ -57,14 +57,20 @@ if ($action == 'updateMask')
     $maskconstreplacement=GETPOST('maskconstreplacement', 'alpha');
     $maskconstcredit=GETPOST('maskconstcredit', 'alpha');
 	$maskconstdeposit=GETPOST('maskconstdeposit', 'alpha');
+    $maskconstboleta=GETPOST('maskconstboleta','alpha'); //boleta
+
     $maskinvoice=GETPOST('maskinvoice', 'alpha');
     $maskreplacement=GETPOST('maskreplacement', 'alpha');
     $maskcredit=GETPOST('maskcredit', 'alpha');
 	$maskdeposit=GETPOST('maskdeposit', 'alpha');
+    $maskboleta=GETPOST('maskboleta','alpha'); //boleta
+
     if ($maskconstinvoice) $res = dolibarr_set_const($db, $maskconstinvoice, $maskinvoice, 'chaine', 0, '', $conf->entity);
     if ($maskconstreplacement) $res = dolibarr_set_const($db, $maskconstreplacement, $maskreplacement, 'chaine', 0, '', $conf->entity);
     if ($maskconstcredit)  $res = dolibarr_set_const($db, $maskconstcredit, $maskcredit, 'chaine', 0, '', $conf->entity);
 	if ($maskconstdeposit)  $res = dolibarr_set_const($db, $maskconstdeposit, $maskdeposit, 'chaine', 0, '', $conf->entity);
+    //boleta
+    if ($maskconstboleta)  $res = dolibarr_set_const($db,$maskconstboleta,$maskboleta,'chaine',0,'',$conf->entity);
 
 	if (! $res > 0) $error++;
 
@@ -412,6 +418,21 @@ foreach ($dirmodels as $reldir)
                                     $htmltooltip.=$nextval;
                                 } else {
                                     $htmltooltip.=$langs->trans($module->error);
+                                }
+                            }
+
+                            //boleta
+                            // Example for standard boleta
+                            $facture->type=10;
+                            $nextval=$module->getNextValue($mysoc,$facture);
+                            if ("$nextval" != $langs->trans("NotAvailable")) {  // Keep " on nextval
+                                $htmltooltip.=$langs->trans("NextValueForBoleta").': ';
+                                if ($nextval) {
+                                    if (preg_match('/^Error/',$nextval) || $nextval=='NotConfigured')
+                                        $nextval = $langs->trans($nextval);
+                                    $htmltooltip.=$nextval.'<br>';
+                                } else {
+                                    $htmltooltip.=$langs->trans($module->error).'<br>';
                                 }
                             }
 

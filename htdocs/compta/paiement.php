@@ -553,7 +553,7 @@ if ($action == 'create' || $action == 'confirm_paiement' || $action == 'add_paie
         $sql.= ' AND f.fk_statut = 1'; // Statut=0 => not validated, Statut=2 => canceled
         if ($facture->type != Facture::TYPE_CREDIT_NOTE)
         {
-            $sql .= ' AND type IN (0,1,3,5)';	// Standard invoice, replacement, deposit, situation
+            $sql .= ' AND type IN (0,1,3,5,10)';	// Standard invoice, replacement, deposit, situation
         }
         else
         {

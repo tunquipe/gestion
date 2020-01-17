@@ -57,6 +57,11 @@ abstract class CommonInvoice extends CommonObject
     const TYPE_PROFORMA = 4;
 
     /**
+     * Boleta
+     */
+    const TYPE_BOLETA = 10;
+
+    /**
      * Situation invoice
      */
     const TYPE_SITUATION = 5;
@@ -437,6 +442,7 @@ abstract class CommonInvoice extends CommonObject
         elseif ($this->type == CommonInvoice::TYPE_DEPOSIT) return $langs->trans("InvoiceDeposit");
         elseif ($this->type == CommonInvoice::TYPE_PROFORMA) return $langs->trans("InvoiceProForma");           // Not used.
         elseif ($this->type == CommonInvoice::TYPE_SITUATION) return $langs->trans("InvoiceSituation");
+        elseif ($this->type == CommonInvoice::TYPE_BOLETA) return $langs->trans("InvoiceBoleta");
 		return $langs->trans("Unknown");
 	}
 
